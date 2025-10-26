@@ -1,68 +1,98 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nome da ONG | Início e Missão</title>
+    <title>Início | Nome da ONG: Juntos pela Causa</title>
+    
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+
     <header>
         <div class="logo">
             <img src="img/logo-ong.png" alt="Logo da Organização Não Governamental">
             <h1>Nome da ONG: Juntos pela Causa</h1>
         </div>
-        <nav aria-label="Navegação Principal do Site">
+
+        <nav id="menu-principal" aria-label="Navegação Principal do Site">
             <ul>
                 <li><a href="index.html" aria-current="page">Início</a></li>
                 <li><a href="projetos.html">Projetos Sociais</a></li>
                 <li><a href="cadastro.html">Quero Participar</a></li>
             </ul>
         </nav>
+
+        <button id="btn-menu-mobile" class="menu-hamburguer" aria-expanded="false" aria-controls="menu-principal">
+            <span class="linha"></span>
+            <span class="linha"></span>
+            <span class="linha"></span>
+        </button>
     </header>
 
     <main>
-        <section id="missao">
-            <h2>Nossa Missão: Transformando Vidas a Cada Dia</h2>
-            <p>Desde [Ano de Fundação], a Nome da ONG dedica-se a [Breve descrição da causa principal, ex: promover a educação e o bem-estar de crianças carentes]. Acreditamos no poder da solidariedade e da ação conjunta.</p>
+        <div class="container">
             
-            <img src="img/acao-principal.jpg" alt="Voluntários abraçando crianças em um centro comunitário.">
-        </section>
+            <section id="missao" class="grid-12">
+                
+                <h2 class="col-12">Transformando Vidas a Cada Dia</h2>
+                
+                <div class="col-md-8"> 
+                    <p>
+                        Desde [Ano de Fundação], a Nome da ONG dedica-se a promover a inclusão social e o desenvolvimento sustentável em nossa comunidade. Acreditamos que a educação, a saúde e o amparo são pilares para um futuro mais justo e igualitário para todos.
+                    </p>
+                    <p>
+                        Nossa missão é ser a ponte entre a solidariedade de nossos voluntários e as necessidades reais de quem mais precisa, realizando ações concretas e transparentes que geram impacto duradouro.
+                    </p>
+                    <a href="cadastro.html" class="btn btn-primario">Torne-se um Voluntário</a>
+                </div>
+                
+                <img src="img/acao-principal.jpg" 
+                     alt="Foto de voluntários felizes participando de uma ação social." 
+                     class="col-md-4">
+            </section>
 
-        <section id="impacto">
-            <h3>Nosso Impacto em Números</h3>
-            <article class="estatistica">
-                <h4>+500</h4>
-                <p>Pessoas atendidas no último ano.</p>
-            </article>
-            <article class="estatistica">
-                <h4>15</h4>
-                <p>Projetos ativos em andamento.</p>
-            </article>
-        </section>
-
-        <section id="contato-destaque">
-            <h3>Entre em Contato Conosco</h3>
-            <p>Fale com nossa equipe e tire suas dúvidas ou saiba como ajudar:</p>
-            <address>
-                Telefone: <a href="tel:+5511988887777">(11) 98888-7777</a><br>
-                Email: <a href="mailto:contato@ong.org.br">contato@ong.org.br</a><br>
-                Endereço: Rua dos Sonhos, 456 - Bairro Feliz.
-            </address>
-        </section>
-    </main>
+            <section id="impacto" class="grid-12">
+                <h3 class="col-12">Nosso Impacto em Números</h3>
+                
+                <article class="card estatistica col-md-4">
+                    <h4>+500</h4>
+                    <p>Pessoas atendidas no último ano.</p>
+                </article>
+                
+                <article class="card estatistica col-md-4">
+                    <h4>15</h4>
+                    <p>Projetos ativos em andamento.</p>
+                </article>
+                
+                <article class="card estatistica col-md-4">
+                    <h4>30k+</h4>
+                    <p>Refeições distribuídas.</p>
+                </article>
+            </section>
+            
+        </div> </main>
 
     <footer>
-        <h3>Nome da ONG - Apoiando o Futuro</h3>
-        <nav aria-label="Links rápidos no rodapé">
-             <ul>
-                <li><a href="#">Política de Privacidade</a></li>
-                <li><a href="#">Termos de Uso</a></li>
-            </ul>
-        </nav>
-        <p>&copy; 2025 Nome da ONG. Todos os direitos reservados.</p>
+        <p>&copy; 2025 Nome da ONG: Juntos pela Causa. Todos os direitos reservados. | Desenvolvido para Entrega Front-end.</p>
     </footer>
+    
+    <div id="confirmacao-modal" class="modal-overlay" aria-modal="true" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <button class="modal-close" id="btn-fechar-modal" aria-label="Fechar Janela Modal">&times;</button>
+            <div class="modal-header">
+                <h3>✅ Confirmação!</h3>
+            </div>
+            <div class="modal-body">
+                <p>Obrigado por utilizar nossos serviços! Clique em "Entendi" para continuar.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primario" id="btn-modal-confirmar">Entendi</button>
+            </div>
+        </div>
+    </div>
 
     <script src="js/main.js"></script>
+    
 </body>
 </html>

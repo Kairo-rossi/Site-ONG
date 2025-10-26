@@ -19,6 +19,11 @@
                 <li><a href="cadastro.html">Quero Participar</a></li>
             </ul>
         </nav>
+        <button id="btn-menu-mobile" class="menu-hamburguer" aria-expanded="false" aria-controls="menu-principal">
+            <span class="linha"></span>
+            <span class="linha"></span>
+            <span class="linha"></span>
+        </button>
     </header>
 
     <main>

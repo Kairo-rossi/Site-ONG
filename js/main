@@ -1,0 +1,72 @@
+// js/main.js
+
+document.addEventListener('DOMContentLoaded', function() {
+    
+    // --- 1. SETUP DO MENU HAMBÚRGUER ---
+    const btnMobile = document.getElementById('btn-menu-mobile');
+    const menu = document.getElementById('menu-principal');
+
+    if (btnMobile && menu) {
+        btnMobile.addEventListener('click', function() {
+            // Alterna a classe 'aberto' no menu
+            menu.classList.toggle('aberto');
+            
+            // Alterna o estado de acessibilidade
+            const isExpanded = btnMobile.getAttribute('aria-expanded') === 'true';
+            btnMobile.setAttribute('aria-expanded', String(!isExpanded));
+            
+            // Opcional: Adiciona classe no body para evitar scroll quando o menu está aberto
+            document.body.classList.toggle('menu-ativo');
+        });
+        
+        // Fecha o menu ao clicar em um link (boa prática em mobile)
+        menu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.remove('aberto');
+                document.getElementById('btn-menu-mobile')?.setAttribute('aria-expanded', 'false');
+                document.body.classList.remove('menu-ativo');
+            });
+        });
+    }
+
+    // --- 2. SETUP DO MODAL DE FEEDBACK ---
+    function setupModal() {
+        const modal = document.getElementById('confirmacao-modal');
+        const closeBtn = document.getElementById('btn-fechar-modal');
+        const confirmBtn = document.getElementById('btn-modal-confirmar');
+
+        if (modal) {
+            // Função para fechar o modal
+            const closeModal = () => {
+                modal.classList.remove('is-visible');
+                modal.setAttribute('aria-hidden', 'true');
+            };
+
+            // CORREÇÃO FINAL: Usando acesso por colchetes para evitar o erro TS
+            window['openModal'] = () => {
+                modal.classList.add('is-visible');
+                modal.setAttribute('aria-hidden', 'false');
+            };
+            
+            // Event Listeners para fechar o modal
+            closeBtn?.addEventListener('click', closeModal);
+            confirmBtn?.addEventListener('click', closeModal);
+            
+            // Fecha ao clicar fora do conteúdo (overlay)
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    closeModal();
+                }
+            });
+            
+            // Fecha ao pressionar ESC
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && modal.classList.contains('is-visible')) {
+                    closeModal();
+                }
+            });
+        }
+    }
+    
+    setupModal();
+});
