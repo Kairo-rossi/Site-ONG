@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nome da ONG | Início e Missão</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="img/logo-ong.png" alt="Logo da Organização Não Governamental">
+            <h1>Nome da ONG: Juntos pela Causa</h1>
+        </div>
+        <nav aria-label="Navegação Principal do Site">
+            <ul>
+                <li><a href="index.html" aria-current="page">Início</a></li>
+                <li><a href="projetos.html">Projetos Sociais</a></li>
+                <li><a href="cadastro.html">Quero Participar</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="missao">
+            <h2>Nossa Missão: Transformando Vidas a Cada Dia</h2>
+            <p>Desde [Ano de Fundação], a Nome da ONG dedica-se a [Breve descrição da causa principal, ex: promover a educação e o bem-estar de crianças carentes]. Acreditamos no poder da solidariedade e da ação conjunta.</p>
+            
+            <img src="img/acao-principal.jpg" alt="Voluntários abraçando crianças em um centro comunitário.">
+        </section>
+
+        <section id="impacto">
+            <h3>Nosso Impacto em Números</h3>
+            <article class="estatistica">
+                <h4>+500</h4>
+                <p>Pessoas atendidas no último ano.</p>
+            </article>
+            <article class="estatistica">
+                <h4>15</h4>
+                <p>Projetos ativos em andamento.</p>
+            </article>
+        </section>
+
+        <section id="contato-destaque">
+            <h3>Entre em Contato Conosco</h3>
+            <p>Fale com nossa equipe e tire suas dúvidas ou saiba como ajudar:</p>
+            <address>
+                Telefone: <a href="tel:+5511988887777">(11) 98888-7777</a><br>
+                Email: <a href="mailto:contato@ong.org.br">contato@ong.org.br</a><br>
+                Endereço: Rua dos Sonhos, 456 - Bairro Feliz.
+            </address>
+        </section>
+    </main>
+
+    <footer>
+        <h3>Nome da ONG - Apoiando o Futuro</h3>
+        <nav aria-label="Links rápidos no rodapé">
+             <ul>
+                <li><a href="#">Política de Privacidade</a></li>
+                <li><a href="#">Termos de Uso</a></li>
+            </ul>
+        </nav>
+        <p>&copy; 2025 Nome da ONG. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

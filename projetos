@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nome da ONG | Projetos, Voluntariado e Doação</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="img/logo-ong.png" alt="Logo da Organização Não Governamental">
+            <h1>Nome da ONG: Juntos pela Causa</h1>
+        </div>
+        <nav aria-label="Navegação Principal do Site">
+            <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="projetos.html" aria-current="page">Projetos Sociais</a></li>
+                <li><a href="cadastro.html">Quero Participar</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="apresentacao-projetos">
+            <h2>Nossos Projetos: Onde a Ajuda Acontece</h2>
+            <p>Conheça as iniciativas que transformam a vida de milhares de pessoas com a sua ajuda.</p>
+        </section>
+
+        <section id="lista-projetos">
+            <h3>Educação para o Futuro</h3>
+            <article class="projeto-detalhe">
+                <h4>Apoio Escolar e Reforço</h4>
+                <img src="img/projeto-educacao.jpg" alt="Crianças estudando em uma sala de aula com voluntário.">
+                <p>Oferecemos aulas de reforço e atividades extracurriculares para manter as crianças na escola e longe da vulnerabilidade.</p>
+                <a href="#" class="btn-saber-mais">Saiba Mais</a>
+            </article>
+
+            <h3>Saúde e Bem-Estar</h3>
+            <article class="projeto-detalhe">
+                <h4>Campanhas de Vacinação e Nutrição</h4>
+                <img src="img/projeto-saude.jpg" alt="Profissional de saúde conversando com uma família.">
+                <p>Foco na saúde preventiva, oferecendo check-ups regulares e orientação nutricional para a comunidade.</p>
+                <a href="#" class="btn-saber-mais">Saiba Mais</a>
+            </article>
+        </section>
+
+        <section id="voluntariado">
+            <h2>Seja um Voluntário: Mude uma Vida, Mude a Sua</h2>
+            <img src="img/voluntario.jpg" alt="Pessoa sorrindo e usando camiseta de voluntário.">
+            <p>Sua paixão e tempo são os presentes mais valiosos. Encontre a área que mais se encaixa com suas habilidades.</p>
+            <a href="cadastro.html" class="btn-acao">Quero Ser Voluntário</a>
+        </section>
+        
+        <section id="doacao">
+            <h2>Como Doar e Fazer a Diferença</h2>
+            <p>Sua contribuição financeira garante a continuidade dos nossos projetos. Qualquer valor ajuda!</p>
+            <ul>
+                <li>Doação única via Pix: **chavepix@ong.org.br**</li>
+                <li>Doação mensal via Cartão de Crédito</li>
+                <li>Doação de alimentos e materiais no nosso endereço</li>
+            </ul>
+            <a href="#" class="btn-acao">Doar Agora</a>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Nome da ONG. Todos os direitos reservados.</p>
+    </footer>
+    
+    <script src="js/main.js"></script>
+</body>
+</html>

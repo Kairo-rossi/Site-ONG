@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nome da ONG | Cadastro</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://unpkg.com/imask"></script>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="img/logo-ong.png" alt="Logo da Organização Não Governamental">
+            <h1>Nome da ONG: Juntos pela Causa</h1>
+        </div>
+        <nav aria-label="Navegação Principal do Site">
+            <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="projetos.html">Projetos Sociais</a></li>
+                <li><a href="cadastro.html" aria-current="page">Quero Participar</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="formulario-inscricao">
+            <h2>Junte-se a Nós! Faça seu Cadastro</h2>
+            <p>Preencha o formulário abaixo para iniciar seu cadastro como voluntário ou apoiador.</p>
+
+            <form action="/processar-cadastro" method="POST">
+                
+                <fieldset>
+                    <legend>Informações Pessoais</legend>
+
+                    <label for="nome">Nome Completo:</label>
+                    <input type="text" id="nome" name="nome" required 
+                           placeholder="Seu nome completo" 
+                           pattern="[A-Za-zÀ-ú\s]{5,}" 
+                           title="Mínimo de 5 caracteres, apenas letras e espaços.">
+
+                    <label for="email">E-mail:</label>
+                    <input type="email" id="email" name="email" required 
+                           placeholder="exemplo@email.com">
+
+                    <label for="cpf">CPF:</label>
+                    <input type="text" id="cpf" name="cpf" required 
+                           placeholder="000.000.000-00" maxlength="14"
+                           title="Formato de CPF válido: 000.000.000-00">
+                    
+                    <label for="telefone">Telefone:</label>
+                    <input type="tel" id="telefone" name="telefone" required 
+                           placeholder="(99) 99999-9999" maxlength="15"
+                           title="Formato de telefone válido: (99) 99999-9999">
+
+                    <label for="dataNascimento">Data de Nascimento:</label>
+                    <input type="date" id="dataNascimento" name="dataNascimento" required>
+                    
+                </fieldset>
+
+                <fieldset>
+                    <legend>Endereço</legend>
+
+                    <label for="cep">CEP:</label>
+                    <input type="text" id="cep" name="cep" required 
+                           placeholder="00000-000" maxlength="9"
+                           title="Formato de CEP válido: 00000-000">
+
+                    <label for="endereco">Endereço:</label>
+                    <input type="text" id="endereco" name="endereco" required 
+                           placeholder="Rua, Avenida, etc.">
+
+                    <label for="cidade">Cidade:</label>
+                    <input type="text" id="cidade" name="cidade" required>
+                    
+                    <label for="estado">Estado:</label>
+                    <select id="estado" name="estado" required>
+                        <option value="">Selecione o Estado</option>
+                        <option value="SP">São Paulo</option>
+                        <option value="RJ">Rio de Janeiro</option>
+                    </select>
+                </fieldset>
+
+                <button type="submit" class="btn-submit">Finalizar Cadastro</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Nome da ONG. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="js/cadastro-mask.js"></script> 
+</body>
+</html>
