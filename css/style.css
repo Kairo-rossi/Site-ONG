@@ -1,0 +1,507 @@
+/* ===================================================================
+   1. DESIGN SYSTEM: VARIÁVEIS CSS (CUSTOM PROPERTIES)
+   =================================================================== */
+:root {
+    /* ------------------------------------
+       1.1. PALETA DE CORES (Mínimo de 8)
+       ------------------------------------ */
+    --cor-primaria-base: #007BFF;       /* Azul Principal da ONG */
+    --cor-primaria-clara: #6FAEFF;      /* Azul para destaque/hover */
+    --cor-primaria-escura: #0056B3;     /* Azul para active/dark mode */
+
+    --cor-secundaria-base: #28A745;     /* Verde Sucesso/Doação */
+    --cor-secundaria-alerta: #FFC107;   /* Amarelo Alerta/Atenção */
+
+    --cor-neutra-fundo: #F8F9FA;        /* Fundo Leve */
+    --cor-neutra-texto: #343A40;        /* Texto Escuro */
+    --cor-neutra-borda: #CED4DA;        /* Linhas e Bordas */
+    --cor-fundo: #ffffff;               /* Fundo de componentes */
+
+    /* ------------------------------------
+       1.2. TIPOGRAFIA HIERÁRQUICA (Mínimo de 5 tamanhos)
+       ------------------------------------ */
+    --fonte-base: 'Arial', sans-serif;
+    --tamanho-h1: 3.5rem;               /* Título principal do site */
+    --tamanho-h2: 2.5rem;               /* Títulos de Seção (páginas) */
+    --tamanho-h3: 1.75rem;              /* Subtítulos e Cards */
+    --tamanho-p: 1rem;                  /* Tamanho de parágrafo base (16px) */
+    --tamanho-pequeno: 0.875rem;        /* Texto auxiliar/footer */
+
+    /* ------------------------------------
+       1.3. SISTEMA DE ESPAÇAMENTO MODULAR (Base 8px)
+       ------------------------------------ */
+    --espacamento-xs: 8px;              /* 8px */
+    --espacamento-sm: 16px;             /* 16px */
+    --espacamento-md: 24px;             /* 24px (Módulo mais usado) */
+    --espacamento-lg: 32px;             /* 32px */
+    --espacamento-xl: 48px;             /* 48px */
+    --espacamento-xxl: 64px;            /* 64px */
+
+    /* 1.4. Variáveis de Layout */
+    --largura-maxima: 1200px;
+}
+
+/* ===================================================================
+   2. RESET BÁSICO E ESTILOS BASE
+   =================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; 
+}
+
+body {
+    font-family: var(--fonte-base);
+    line-height: 1.6;
+    background-color: var(--cor-neutra-fundo);
+    color: var(--cor-neutra-texto);
+}
+
+/* Tipografia Hierárquica */
+h1 { font-size: var(--tamanho-h1); margin-bottom: var(--espacamento-md); }
+h2 { font-size: var(--tamanho-h2); margin-bottom: var(--espacamento-sm); color: var(--cor-primaria-base); }
+h3 { font-size: var(--tamanho-h3); margin-bottom: var(--espacamento-xs); }
+h4 { font-size: var(--tamanho-p); margin-bottom: var(--espacamento-xs); }
+p { font-size: var(--tamanho-p); margin-bottom: var(--espacamento-sm); }
+
+/* Links e Listas */
+a { text-decoration: none; color: var(--cor-primaria-base); transition: color 0.3s; }
+a:hover { color: var(--cor-primaria-escura); }
+ul { list-style: none; }
+
+/* ========================================= */
+/* ESTILOS PARA VALIDAÇÃO JS (ENTREGA 3) */
+/* ========================================= */
+.feedback-erro {
+    color: #DC3545; /* Vermelho de erro */
+    font-size: 0.875rem;
+    margin-top: 4px;
+    /* Para destacar o campo que está com erro */
+}
+
+/* Opcional: Estilo para o campo com erro */
+.is-invalid-js {
+    border: 1px solid #DC3545 !important;
+    box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
+}
+
+/* ========================================= */
+/* CORREÇÃO DE LAYOUT E IMAGENS */
+/* =LASSE RESPONSIVA PARA IMAGEM */
+/* ========================================= */
+.img-fluida, 
+img {
+    /* CORREÇÃO CRUCIAL: Garante que a imagem se encaixe na coluna */
+    max-width: 100%; 
+    height: auto; 
+    display: block;
+}
+
+/* Se você tem uma classe para a imagem na seção principal, use-a também: */
+.imagem-destaque {
+    overflow: hidden; 
+    border-radius: 8px;
+}
+/* Certifique-se que o seu HTML usa: <img class="img-fluida"> */
+
+/* ===================================================================
+   3. LAYOUT PRINCIPAL: ESTRUTURA GERAL COM CSS GRID
+   =================================================================== */
+
+/* Definição do Layout Principal (Corpo do Site) */
+body {
+    display: grid;
+    grid-template-areas: 
+        "header"
+        "main"
+        "footer";
+    grid-template-rows: auto 1fr auto; 
+    min-height: 100vh;
+}
+
+header { grid-area: header; }
+main { grid-area: main; }
+footer { 
+    grid-area: footer; 
+    padding: var(--espacamento-md);
+    background-color: var(--cor-neutra-texto);
+    color: var(--cor-fundo);
+    text-align: center;
+    font-size: var(--tamanho-pequeno);
+}
+
+/* Container de Largura Máxima */
+.container {
+    max-width: var(--largura-maxima);
+    margin: 0 auto;
+    padding: 0 var(--espacamento-md);
+}
+
+main .container {
+    padding-top: var(--espacamento-lg);
+    padding-bottom: var(--espacamento-lg);
+}
+
+/* SISTEMA DE GRID 12 COLUNAS E UTILITÁRIOS */
+.grid-12 {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: var(--espacamento-md); 
+    margin-bottom: var(--espacamento-xxl);
+}
+
+/* MOBILE FIRST: Por padrão, todo item do grid ocupa 12 colunas */
+.grid-12 > * {
+    grid-column: span 12; 
+}
+
+
+/* ===================================================================
+   4. COMPONENTES DE INTERFACE
+   =================================================================== */
+
+/* 4.1. HEADER E NAVEGAÇÃO (FLEXBOX) */
+header {
+    padding: var(--espacamento-sm) var(--espacamento-lg); 
+    background-color: var(--cor-fundo);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+}
+
+.logo { display: flex; align-items: center; }
+.logo img { height: 40px; margin-right: var(--espacamento-xs); }
+.logo h1 { font-size: 1.5rem; font-weight: 700; color: var(--cor-primaria-base); margin-bottom: 0; }
+
+nav ul { display: flex; gap: var(--espacamento-md); }
+nav ul li a { font-weight: 500; font-size: var(--tamanho-p); padding: var(--espacamento-xs) 0; color: var(--cor-neutra-texto); }
+nav ul li a:hover, nav ul li a:focus { color: var(--cor-primaria-base); border-bottom: 2px solid var(--cor-primaria-base); }
+
+/* Botão Hambúrguer (Escondido por padrão) */
+.menu-hamburguer {
+    display: none; 
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: var(--espacamento-xs);
+    z-index: 1000; 
+}
+
+.menu-hamburguer .linha {
+    display: block;
+    width: 24px;
+    height: 3px;
+    background-color: var(--cor-neutra-texto);
+    margin: 5px 0;
+    transition: transform 0.3s, opacity 0.3s;
+}
+
+/* 4.2. CARDS RESPONSIVOS (Estatística) */
+.card {
+    background-color: var(--cor-fundo);
+    padding: var(--espacamento-lg);
+    border-radius: 8px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.card.estatistica h4 {
+    font-size: var(--tamanho-h2);
+    color: var(--cor-primaria-base);
+    margin-bottom: var(--espacamento-xs);
+    font-weight: 700;
+}
+
+.card.estatistica p {
+    font-size: var(--tamanho-p);
+    margin-bottom: 0;
+}
+
+/* 4.3. BOTÕES REUTILIZÁVEIS com ESTADOS VISUAIS */
+.btn {
+    display: inline-block;
+    text-decoration: none;
+    cursor: pointer;
+    text-align: center;
+    border: 1px solid transparent;
+    padding: var(--espacamento-sm) var(--espacamento-md);
+    font-size: var(--tamanho-p);
+    font-weight: 600;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    margin-top: var(--espacamento-sm); 
+}
+
+/* Primário */
+.btn-primario {
+    background-color: var(--cor-primaria-base);
+    color: var(--cor-fundo);
+    border-color: var(--cor-primaria-base);
+}
+
+.btn-primario:hover, .btn-primario:focus {
+    background-color: var(--cor-primaria-escura);
+    border-color: var(--cor-primaria-escura);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    outline: none; 
+}
+
+.btn-primario:active {
+    background-color: #003F80;
+    transform: translateY(1px);
+    box-shadow: none; 
+}
+
+.btn-primario:disabled {
+    background-color: var(--cor-neutra-borda);
+    color: var(--cor-neutra-texto);
+    cursor: not-allowed;
+    opacity: 0.6;
+    box-shadow: none;
+    transform: none;
+}
+
+/* 4.4. FORMULÁRIOS ESTILIZADOS COM VALIDAÇÃO VISUAL */
+form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: var(--espacamento-lg);
+    background-color: var(--cor-fundo);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+fieldset {
+    border: 1px solid var(--cor-neutra-borda);
+    padding: var(--espacamento-md);
+    margin-bottom: var(--espacamento-lg);
+    border-radius: 4px;
+}
+
+legend {
+    font-size: var(--tamanho-h3);
+    font-weight: 600;
+    color: var(--cor-neutra-texto);
+    padding: 0 var(--espacamento-xs);
+}
+
+.form-group {
+    margin-bottom: var(--espacamento-sm);
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-weight: 500;
+    font-size: var(--tamanho-p);
+    color: var(--cor-neutra-texto);
+    margin-bottom: 4px;
+}
+
+input:not([type="radio"]):not([type="checkbox"]), textarea, select {
+    width: 100%;
+    padding: var(--espacamento-sm);
+    font-size: var(--tamanho-p);
+    border: 1px solid var(--cor-neutra-borda);
+    border-radius: 4px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input:focus, textarea:focus, select:focus {
+    outline: none; 
+    border-color: var(--cor-primaria-base);
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+}
+
+/* VALIDAÇÃO VISUAL (REQUISITO CHAVE) */
+input:not([type="radio"]):not([type="checkbox"]):invalid:not(:placeholder-shown),
+textarea:invalid:not(:placeholder-shown) {
+    border-color: #DC3545; /* Vermelho de Erro */
+    box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.25);
+}
+
+input:not([type="radio"]):not([type="checkbox"]):valid:not(:placeholder-shown),
+textarea:valid:not(:placeholder-shown) {
+    border-color: var(--cor-secundaria-base); /* Verde de Sucesso */
+    box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.25);
+}
+
+.form-radio-group label {
+    display: inline-flex;
+    align-items: center;
+    font-weight: normal;
+    margin-right: var(--espacamento-md);
+}
+
+.form-radio-group input[type="radio"], .form-radio-group input[type="checkbox"] {
+    width: auto;
+    margin-right: 5px;
+}
+
+/* 4.5. BADGES E TAGS */
+.badge {
+    display: inline-block;
+    padding: 4px var(--espacamento-xs);
+    border-radius: 20px;
+    font-size: var(--tamanho-pequeno);
+    font-weight: 600;
+    text-transform: uppercase;
+    line-height: 1;
+    margin-right: var(--espacamento-xs);
+    margin-bottom: var(--espacamento-xs);
+}
+
+.badge-primario { background-color: var(--cor-primaria-base); color: var(--cor-fundo); }
+.badge-secundario { background-color: var(--cor-secundaria-base); color: var(--cor-fundo); }
+.badge-alerta { background-color: var(--cor-secundaria-alerta); color: var(--cor-neutra-texto); }
+.badge-neutro { background-color: var(--cor-neutra-borda); color: var(--cor-neutra-texto); }
+
+
+/* 4.6. FEEDBACK: ALERTS */
+.alert {
+    padding: var(--espacamento-sm);
+    margin-bottom: var(--espacamento-md);
+    border: 1px solid transparent;
+    border-radius: 4px;
+    font-size: var(--tamanho-p);
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+.alert-sucesso { background-color: #D4EDDA; border-color: #C3E6CB; color: var(--cor-secundaria-base); }
+.alert-info { background-color: #CCE5FF; border-color: #B8DAFF; color: var(--cor-primaria-escura); }
+.alert-erro { background-color: #F8D7DA; border-color: #F5C6CB; color: #721C24; }
+.alert-alerta { background-color: #FFF3CD; border-color: #FFEBA3; color: #856404; }
+
+
+/* 4.7. FEEDBACK: MODAL */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 2000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+.modal-overlay.is-visible {
+    visibility: visible;
+    opacity: 1;
+}
+
+.modal-content {
+    background-color: var(--cor-fundo);
+    padding: var(--espacamento-lg);
+    border-radius: 8px;
+    max-width: 500px;
+    width: 90%;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    position: relative;
+}
+
+.modal-header h3 { margin-bottom: var(--espacamento-sm); color: var(--cor-primaria-base); }
+.modal-body { margin-bottom: var(--espacamento-md); padding-top: var(--espacamento-xs); }
+.modal-footer { display: flex; justify-content: flex-end; padding-top: var(--espacamento-sm); border-top: 1px solid var(--cor-neutra-borda); }
+
+.modal-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: transparent;
+    border: none;
+    font-size: var(--tamanho-h2);
+    color: var(--cor-neutra-borda);
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.modal-close:hover { color: var(--cor-neutra-texto); }
+
+
+/* ===================================================================
+   5. RESPONSIVIDADE (MEDIA QUERIES) - 5 BREAKPOINTS
+   =================================================================== */
+
+/* B1: Mobile Grande (max-width de 768px) - ESCONDE MENU DESKTOP E MOSTRA HAMBÚRGUER */
+@media (max-width: 768px) {
+    .menu-hamburguer { display: block; }
+    
+    #menu-principal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: rgba(var(--cor-neutra-texto), 0.95); 
+        transform: translateX(100%);
+        transition: transform 0.4s ease-in-out;
+        z-index: 999;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    #menu-principal.aberto { transform: translateX(0); }
+    
+    #menu-principal ul { flex-direction: column; gap: var(--espacamento-lg); }
+
+    #menu-principal ul li a { font-size: var(--tamanho-h2); color: var(--cor-neutra-fundo); }
+
+    /* Reduz o H1 principal no mobile para não ser muito grande */
+    h1 { font-size: 2rem; }
+}
+
+
+/* B2: Tablets e Desktop Pequeno (min-width: 768px) */
+@media (min-width: 768px) {
+    /* -- Classes Responsivas MD (Layout de Colunas para Tablet/Desktop) -- */
+    .col-md-1 { grid-column: span 1; }
+    .col-md-2 { grid-column: span 2; }
+    .col-md-3 { grid-column: span 3; }
+    .col-md-4 { grid-column: span 4; }
+    .col-md-5 { grid-column: span 5; }
+    .col-md-6 { grid-column: span 6; }
+    .col-md-7 { grid-column: span 7; }
+    .col-md-8 { grid-column: span 8; }
+    .col-md-9 { grid-column: span 9; }
+    .col-md-10 { grid-column: span 10; }
+    .col-md-11 { grid-column: span 11; }
+    .col-md-12 { grid-column: span 12; }
+}
+
+/* B3: Desktop Padrão (min-width: 992px) */
+@media (min-width: 992px) {
+    .grid-12 { gap: var(--espacamento-lg); }
+}
+
+/* B4: Desktop Grande (min-width: 1200px) - Reverte o Menu Mobile */
+@media (min-width: 1200px) {
+    #menu-principal {
+        all: unset;
+        display: block; 
+        position: static;
+        transform: none;
+    }
+    nav ul { display: flex; }
+    .menu-hamburguer { display: none; }
+}
+
+/* B5: Desktop Extra Grande (min-width: 1400px) */
+@media (min-width: 1400px) {
+    :root { --largura-maxima: 1440px; }
+}
