@@ -21,7 +21,13 @@ document.addEventListener('DOMContentLoaded', function() {
         menu.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 menu.classList.remove('aberto');
-                document.getElementById('btn-menu-mobile')?.setAttribute('aria-expanded', 'false');
+                
+                // CORREÇÃO 1: Substituindo o '?.setAttribute' por um 'if' tradicional
+                const mobileButton = document.getElementById('btn-menu-mobile');
+                if (mobileButton) {
+                    mobileButton.setAttribute('aria-expanded', 'false');
+                }
+                
                 document.body.classList.remove('menu-ativo');
             });
         });
@@ -45,8 +51,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 modal.setAttribute('aria-hidden', 'false');
             };
             
-            closeBtn?.addEventListener('click', closeModal);
-            confirmBtn?.addEventListener('click', closeModal);
+            // CORREÇÃO 2: Substituindo 'closeBtn?.addEventListener' por 'if'
+            if (closeBtn) {
+                closeBtn.addEventListener('click', closeModal);
+            }
+            
+            // CORREÇÃO 3: Substituindo 'confirmBtn?.addEventListener' por 'if'
+            if (confirmBtn) {
+                confirmBtn.addEventListener('click', closeModal);
+            }
+            
             modal.addEventListener('click', (e) => {
                 if (e.target === modal) {
                     closeModal();
@@ -62,6 +76,7 @@ document.addEventListener('DOMContentLoaded', function() {
     setupModal();
     
     // --- 3. IMPLEMENTAÇÃO DO SPA BÁSICO ---
+    // ... (restante da função carregarConteudo e setup de links permanece o mesmo)
     
     /**
      * Carrega o conteúdo na área principal, manipulando a URL (SPA).
@@ -125,23 +140,22 @@ document.addEventListener('DOMContentLoaded', function() {
     navLinks.forEach(link => {
         // Apenas links que queremos que o SPA gerencie (excluindo a home e o cadastro)
         if (link.getAttribute('href') !== 'cadastro.html' && link.getAttribute('href') !== 'index.html') {
-            link.addEventListener('click', (e) => {
-                e.preventDefault(); // Impede o carregamento da página padrão
-                const path = link.getAttribute('href');
-                if (path) {
-                    carregarConteudo(path);
-                }
-            });
+            if (!link.getAttribute('href').startsWith('#')) { // Ignorar âncoras locais como #contato
+                link.addEventListener('click', (e) => {
+                    e.preventDefault(); // Impede o carregamento da página padrão
+                    const path = link.getAttribute('href');
+                    if (path) {
+                        carregarConteudo(path);
+                    }
+                });
+            }
         }
     });
     
-    // ... (código anterior)
-
     // 5. Permite a Navegação de Volta (Botão Voltar do Browser)
     window.addEventListener('popstate', (e) => {
         
         // Se o e.state é nulo, significa que voltamos ao ponto de partida (Home).
-        // Se a Home é estática, a forma mais simples de restaurar o conteúdo original é recarregar a página.
         if (e.state === null) {
             // Usa assign para recarregar a URL atual (index.html)
             window.location.assign('index.html'); 
