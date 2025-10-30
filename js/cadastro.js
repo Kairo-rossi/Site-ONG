@@ -35,6 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
     /**
      * Remove o feedback visual de erro.
      * @param {HTMLElement} input - O campo de input.
+     *
      */
     function removerFeedback(input) {
         const feedback = input.parentNode.querySelector('.feedback-erro');
@@ -117,8 +118,10 @@ document.addEventListener('DOMContentLoaded', function() {
             // Se tudo estiver OK, simula o envio e abre o modal.
             console.log('Formulário Enviado com Sucesso! Abrindo modal...');
             
-            // Chama a função global definida em main.js
-            window['openModal']?.(); 
+            // CORREÇÃO 1: Troca window['openModal']?.() por if
+            if (window['openModal']) {
+                window['openModal']();
+            }
             
             // Remove todos os feedbacks e limpa o formulário
             form.querySelectorAll('.feedback-erro').forEach(el => el.remove());
@@ -127,7 +130,11 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
              // Rola a tela para o primeiro erro se houver
              const firstInvalid = form.querySelector(':invalid, .is-invalid-js');
-             firstInvalid?.focus();
+             
+             // CORREÇÃO 2: Troca firstInvalid?.focus() por if
+             if (firstInvalid) {
+                 firstInvalid.focus();
+             }
         }
     });
 });

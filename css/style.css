@@ -5,8 +5,8 @@
     /* ------------------------------------
        1.1. PALETA DE CORES (Mínimo de 8)
        ------------------------------------ */
-    --cor-primaria-base: #007BFF;       /* Azul Principal da ONG */
-    --cor-primaria-clara: #6FAEFF;      /* Azul para destaque/hover */
+    --cor-primaria-base: #0065D1;       /* Azul Principal da ONG */
+    --cor-primaria-clara: #418ef3;      /* Azul para destaque/hover */
     --cor-primaria-escura: #0056B3;     /* Azul para active/dark mode */
 
     --cor-secundaria-base: #28A745;     /* Verde Sucesso/Doação */
@@ -504,4 +504,13 @@ textarea:valid:not(:placeholder-shown) {
 /* B5: Desktop Extra Grande (min-width: 1400px) */
 @media (min-width: 1400px) {
     :root { --largura-maxima: 1440px; }
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        /* Defina suas variáveis para o modo escuro */
+        --cor-fundo-claro: #121212;
+        --cor-texto-principal: #E0E0E0;
+        /* etc */
+    }
 }
